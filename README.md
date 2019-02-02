@@ -71,7 +71,8 @@ App
 * **Modelo_Final**: Stores the final model
 * **Flask**: Stores the web service application
 
-## Instructions to reproduce data science project:
+
+##Instructions to reproduce data science project:
 
 Follow the steps to reproduce the project and generate the deliverables enlisted above. The code is organized in the CRISP-DM stages. First of all clone the repository.
 
@@ -79,7 +80,7 @@ Follow the steps to reproduce the project and generate the deliverables enlisted
 
 1. Knit in R-Studio **Entendiendo_el_Negocio.Rmd** to run the understanding the business analysis.
 
-** II. Data Understanding**
+**II. Data Understanding**
 
 1. Run the shell script **DescargaDatos.sh** to download datasets from Kaggle. A Kaggle API Key is needed. Also, the file directory for this project will be created.
 
@@ -89,7 +90,7 @@ Follow the steps to reproduce the project and generate the deliverables enlisted
 
 4. Knit in R-Studio **Comprension_Datos.Rmd** to run the understanding the data analysis.
 
-** III. Data Preparation** 
+**III. Data Preparation** 
 
 1. Knit in R-Studio **Preparacion_Datos.Rmd** to run the data preparation steps. Note: A computed machine with at least 20 GB in RAM is required to generate this report. In this step we used a Data Science Virtual Machine in Azure.
 2. Knit in R-Studio **EDA.Rmd** to run the exploratory data analysis.
@@ -98,10 +99,10 @@ Follow the steps to reproduce the project and generate the deliverables enlisted
 
 1. Run **Modelado.ipynb** to execute the modelling section that trains the machine learning models. This part also generates the testing set.
 
-** V. Evaluation**
+**V. Evaluation**
 
 1. Run **Modelado.ipynb** to execute the model evaluation and fine tuning. The best model is saved in a pickle file. A file with the Kaggle predictions is generated.
 
-** VI. Deployment**
+**VI. Deployment**
 
 1. Run **predictor.py** to execute the flask application to generate predictions by product and store. The same features used in the training and testing set have to be generated and send to the app.
