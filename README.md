@@ -72,7 +72,7 @@ App
 * **Flask**: Stores the web service application
 
 
-##Instructions to reproduce data science project:
+## Instructions to reproduce data science project
 
 Follow the steps to reproduce the project and generate the deliverables enlisted above. The code is organized in the CRISP-DM stages. First of all clone the repository.
 
