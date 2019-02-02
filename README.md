@@ -1,144 +1,107 @@
-# Minería y Análisis de Datos Proyecto Final: Predict Future Sales 
-## Alejandra Lelo de Larrea Ibarra 000124433,  Dante Ruiz Martínez 183340,  José Carlos Escobar Gutiérrez 175895
+# Predicting Future Sales
 
-Para replicar, hacer pull de los archivos Min_Final.7z.001 al Min_Final.7z.009 y
-descomprimir con "Descompresion.sh".  Esto replicará la esctructura de carpetas necesaria para correr todos los scripts de manera local.
+![](figs/logos.png)
 
-### Objetivo
+## Team
+- **Dante Ruiz 183340**, 
+- Alejandra Lelo 124433
+- Jose Carlos Escobar 175895
 
-El objetivo de este trabajo es predecir las ventas totales mensuales para cada producto en cada tienda de la compañía *1C Company* (http://1c.ru/eng/title.htm), una de las compañías de software más grandes de Rusia, fundada en 1991 que se especializa en el desarrollo, distribución, publicación y soporte de software de mercado masivo. En sentido sentido, se busca responder a la pregunta ¿cuántos artículos del tipo $j$ se venden en la tienda $k$ al tiempo $t$?
+## Objective:
 
+To predict the total monthly sales by product and store for [1C]( http://1c.ru/eng/title.html), one of the largest software companies in Russia. The purpose of this predictions is to inform business management strategy, marketing strategies and inventory management.
 
-Este problema forma parte de una competencia de Kaggle como examen final del curso "How to win a data science competition" de Coursera. Para más información del concurso consultar la página https://www.kaggle.com/c/competitive-data-science-predict-future-sales
+## Data:
 
+The dataset  belongs [“How to win a data science competition”](https://www.kaggle.com/c/competitive-data-science-predict-future-sales) Kaggle Competition for a Coursera advanced machine learning course.  
 
-### Metodología y Documentación
+## Methodology:
 
-Para resolver este problema, seguiremos la metodología CRISP-DM. De esta manera, el proyecto está dividido en 6 secciones: Entendiendo el Negocio, Comprensión de los Datos, Preparación de los Datos, Modelado, Evaluación e Implantación. A continuación se describe cada una de estas fases. 
+We used the [cross-industry process for data mining (CRISP-DM)](https://www.sv-europe.com/crisp-dm-methodology/) methodology. Thus the project is divided in six sections:
 
+![](figs/crispdm.png)
 
+Each section has two deliverable files:
 
-#### 1. Entendiendo el Negocio
+1. **Documentation**. An HTML or Jupyter Notebook file (.ipynb) to document the process and results of each step of the CRISP-DM. *Includes documented code*.
+2. **Code**. An R-Markdown (.Rmd) or a Jupyter Notebook file (.ipynb) containing the code to reproduce each step of the project.
 
-Esta fase del proyecto se encuentra documentada en el archivo **Entendiendo_el_Negocio.html** y su respectivo archivo de origen **Entendiendo_el_Negocio.Rmd**. En dicho archivo se describe lo siguiente: 
+## Tools used:
 
-1. Información sobre la empresa 1C
-    
-2. Objetivos del negocio
-    
-3. Evaluación de la situación
-    
-4. Objetivos de minería de datos
-    
-5. Plan de trabajo siguiendo la metodología CRISP-DM
-  
+* **Shell scripting**: to download files from the Kaggle API
+* **R**: to preprocess, clean and explore data
+* **Google Could Translation API**: to translate text from Russian to English
+* **Python**: to train and evaluate machine learning models using scikit-learn package.
+* **Flask**: to deploy the final model to make monthly sales predictions by product and store.
+* **Azure**: to use a Data Science Machine to conduct the entire process
 
-Para reproducir el reporte, basta con abrir en RStudio el archivo **Entendiendo_el_Negocio.Rmd** y dar click en el botón *Knit*.
+![](figs/tools.png)
 
+## Deliverables
 
+**Files:** 
 
-#### 2. Comprensión de los Datos
-
-Esta fase del proyecto se encuentra documentada en el archivo **Comprension_Datos.html** y su respectivo archivo de origen **Comprension_Datos.Rmd**. En dicho archivo se describe lo siguiente: 
-
-1. Proceso de recolección de los datos iniciales: Los datos iniciales se descargaron directamente en bash utilizando la API de Kaggle. Se requiere del archivo **DescargaDatos.sh** para poder reproducir la descarga de los datos.  
-    
-2. Descripción de los datos: Descripción detallada de cada una de las bases de datos descargadas y las variables que contiene. 
-
-3. Exploración de los datos: En esta fase se incluye la traducción de los catálogos del ruso al inglés utilizando la API de Google Translate (ver el archivo **Traduccion.html** para la documentación del proceso de traducción). Además se incluye la carga de los catálogos, así como de los datos de entrenamiento. Nota: se requiere del archivo **Traduccion.Rmd** para reproducir la traducción de los datos. 
-
-4. Almacenamiento de los datos: Los datos traducidos listos para su exploración se almacenan en el archivo **train\_trad.rds** dentro de la carpeta **Datos\_trad**. 
-    
-5. Análisis Exploratorio de Datos: En esta fase se incluye el análisis univariado, bivariado y multivariado de los datos. Se hace uso del archivo **01_Libraries.R** y del archivo **02_Utils.R** que contiene los paquetes a utilizar y las funciones auxiliares respectivamente.  
-        
-
-Para reproducir el reporte, se debe realizar lo siguiente: 
-
-1. Generar una llave para la API de Kaggle (ver instrucciones en Comprension_Datos.html). 
-
-2. Correr el archivo **DescargaDatos.sh** en la terminal. 
-
-3. Generar una llave para la API de Google Translate (ver instrucciones en Traduccion.html) y sustituirla en el archivo **Traduccion.Rmd**. 
-
-4. Abrir el archivo **Traduccion.Rmd** en RStudio y dar click en el botón *Knit*.
-
-5. Abrir el archivo **Comprension_Datos.Rmd** y dar click en el botón *Knit*.
-
-
-
-#### 3. Preparación de los Datos 
-
-Esta fase del proyecto se encuentra documentada en el archivo **Preparacion_Datos.html** y su respectivo archivo de origen **Preparacion_Datos.Rmd**. En dicho archivo se describe lo siguiente: 
-
-1. Selección de los datos: Describe los datos que se van a utilizar. Requiere de la base de datos generada en la fase anterior **train_trad.rds**. 
-
-2. Limpieza de los datos: Se examinan los tipos de variables asignados, se imputan datos faltantes en caso de existir, se examinan los valores únicos en cada variable para detectar errores de dedo y decidir sobre la posible categorización.
-
-3. Ingeniería de características: La base de datos tiene observaciones diarias de las ventas; por lo tanto, primero se realiza la agregación mensual de los datos para poder predecir ventas mensuales. El mayor problema de la base es que se tienen series de tiempo incompletas para la dupla (tienda, artículo). Al ser un problema de series de tiempo, los datos faltantes se completan creando variables de precio promedio y cantidad mensual vendida por artículo, por categoría y por tienda. Además, se crean variables rezagadas a uno, dos, tres, seis y doce meses de precios y cantidades observadas. 
-
-4. Imputación de los datos faltantes: Al calcular rezagos de las series, se obtienen datos faltantes al inicio de las series. Por ser una serie de tiempo, éstos se imputan con el primer valor observado. 
-
-5. Almacenamiento de los datos limpios: La base de datos limpia tiene 45,226,800 observaciones y 59 variables. Ésta se almacena en el archivo **train_mensuales_completo.rds** dentro de la carpeta **Datos_Clean.rds**.
-
-
-Para reproducir el reporte de esta fase, basta con abrir en RStudio el archivo **Preparacion_Datos.Rmd** y dar click en el botón *Knit*. Nota: Se requiere un equipo de cómputo con al menos 20 GB de memoria RAM para poder reproducir este reporte; además, dependiendo del equipo puede tardar varios minutos en correr. 
-
-
-
-#### 4. Modelado 
-
-Se hicieron tres modelos ridge, lasso y xgboost. El que mejor se desempeñó fue el XGBOOST el cual superó en todas las ocasiones el benchmark de 1.67 en el RMSE sobre el conjunto de prueba. La predicción más alta que se obtuvo fue de 0.97 RMSE colocando el modelo en el lugar 667 de 1986. El mejor modelo superó el criterio de éxito del proyecto alcanzando un 0.97 del RMSE.
-
-El procedimiento que se utilizó para obtener los modelos se basó en la metodología CRISP-DM. Una vez entendidas las necesidades del negocio de procedió a armar una base de datos, realizar un análisis exploratorio de datos, se generó una base de datos limpia y con nuevas características, se seleccionaron las variables necesarias para predecir en el futuro y se ajustaron modelos. Los mejores modelos fueron probados en Kaggle para verificar su desempeño y proceder a su optimización.
-
-
-#### 5. Evaluación 
-
-Se ajustaron los modelos de Regresión, Ridge y Lasso optimizados con el conjunto de prueba. En la siguiente tabla se muestra cómo se desempeñaron en el conjunto de prueba en Kaggle.  Se ajustaron los modelos de Regresión, Ridge y Lasso optimizados con el conjunto de prueba. En la siguiente tabla se muestra cómo se desempeñaron en el conjunto de prueba en Kaggle.
-
-Una vez ajustado el modelo se procede a ajustar el modelo sobre el conjunto de prueba. Se puede observar que para el mes de noviembre de 2015 se predijó la cantidad de unidades vendidas para 214,200 productos por tienda. Algunos valores quedan fuera del rango de 0 y 20, por lo que se deberán ajustar los valores extremos. Se ajustan los valores predichos para que queden en un rango de 0 y 20 como se especificó en las instrucciones de la competencia.  
-Las ventas totales de la empresa 1C durante el mes de noviembre de 2015 se proyectaron en 60,966 unidades. Se genera el archivo de predicciones para subir a Kaggle.
-
-Ahora guardamos el modelo en Pickle para posteriormente utilizarlo en el WEB SERVICE en Flask.
-
-
-#### 6. Implantación
-
-Herramienta de flask para predecir ventas.
-
-Flask es un microframework que permite crear aplicaciones web con pocas líneas de código, se enfoca en proporcionar lo mínimo necesario para poner a funcionar una aplicación básica, por ejemplo, para el prototipado rápido de proyectos.  Incluye un servidor web de desarrollo para prueba de aplicaciones sin tener que instalar mas aplicaciones. Flask cuenta con un depurador y soporte integrado para pruebas unitarias así como soporte para Unicode y es compatible con WSGI 1.0.Esta manera de operar es ideal para poder implementar aplicaciones en un celular o bien a través de una página web, por ejemplo.
-
-
-
-#### 7. Presentables:
-
-Comprension_Datos.html: Página web que describe los datos utilizados
-Traduccion.html : Página web que describe el proceso para traducir la base de datos
-Entendiendo_el_Negocio : Página web que describe el problema del negocio
-EDA.html: Página web que presenta el análisis exploratorio de datos
-Preparacion_Datos.html : Página web que describe cómo se llevó a cabo la limpieza de los datos y la ingeniería de características.
-Modelado.ipynb : Página que describe cómo se llevó a cabo el proceso de modelado.
-Evaluacion.ipynb : Página que describe cómo se evaluaron los modelos en Kaggle
-
-Código reproducible:
-
-README.md: Contiene instrucciones de cómo hacer reproducible el producto de ciencia de datos.
-- DescargaDatos.sh : Código bash para descargar archivos
-- Comprension_Datos.Rmd
-- Traduccion.Rmd
-- Entendiendo_el_Negocio.Rmd
-- EDA.Rmd
-- Preparacion_Datos.Rmd
-- 01_Libraries.R: Script de R con toda la paquetería necesaria para reproducir el producto.
-- 02_Utils.R: Script de R con herramientas para procesar los datos.
-
+1. **Executive summary**: An executive summary of the project in spanish
+2. **Comprension_Datos.html**: Web page that describes the dataset 
+3. **Traduccion.html** : Web page that describes the text translation from Russian to English 
+4. **Entendiendo_el_Negocio** : Web page that describes the business problem 
+5. **EDA.html**: Web page that presents the exploratory data analysis
+6. **Preparacion_Datos.html**: Web page that describes data cleaning and feature engineering.
+7. **Modelado.ipynb**: Web page that presents the machine learning process to fit models. 
+8. **Evaluacion.ipynb** : Web page that describes how models were evaluated, the best model selected and how predictions were performed.
+Reproducible code:
+9. **README.md**: Contains information of how to make the project reproducible.
+10. **DescargaDatos.sh** : Shell script to download and extract data
+11. **Comprension_Datos.Rmd**
+12. **Traduccion.Rmd**
+13. **Entendiendo_el_Negocio.Rmd**
+14. **EDA.Rmd
+15. **Preparacion_Datos.Rmd**
+17. **01_Libraries.R**: R script with all the library packages necessary to install to run this project.
+18. **02_Utils.R**: R script with auxiliary functions written for this project.
 App
-- predictor.py: el código que se monta como app y funciona como servicio web para predecir ventas.
+19. **predictor.py**: web service application in flask to predict monthly sales by product and store for the month of November 2015.
 
-Carpetas:
-- Datos: Contiene los archivos con los datos crudos.
-- Datos_trad: Aloja los datos traducidos del ruso al inglés
-- Datos_clean: Aloja los datos limpios
-- Data_Modelos: Aloja los datos del conjunto de entrenamiento y prueba de los modelos
-- Modelo_Final: Aloja los datos del modelo final
-- Flask: Aloja el código de la aplicación.
+**Directories:**
+
+* **Datos**: Contains raw datasets.
+* **Datos_trad**: Stores translated data in english
+* **Datos_clean**: Stores clean datasets
+* **Data_Modelos**: Stores the training and testing datasets
+* **Modelo_Final**: Stores the final model
+* **Flask**: Stores the web service application
+
+## Instructions to reproduce data science project:
+
+Follow the steps to reproduce the project and generate the deliverables enlisted above. The code is organized in the CRISP-DM stages. First of all clone the repository.
+
+**I. Understanding the Business**
+
+1. Knit in R-Studio **Entendiendo_el_Negocio.Rmd** to run the understanding the business analysis.
+
+** II. Data Understanding**
+
+1. Run the shell script **DescargaDatos.sh** to download datasets from Kaggle. A Kaggle API Key is needed. Also, the file directory for this project will be created.
+
+2. Run **Descompresion.sh** to decompress R and Python scripts from  “.7z” files using p7zip (Min_FINAL.7z.001 to Min_FINAL.7z.009). The R objects were included if the user wants to save time in code execution. Also translated datasets were included in case the user does not want to reproduce the text translation from Russian to Spanish.
+
+3. Knit in R-Studio de **Traduccion.Rmd** to translate the raw dataset from Russian to English using the Google Cloud Translation API. An API key is needed to execute the translation. This step is optional as translated datasets have been included in **train_trad.rds** within **Datos_trad** file directory
+
+4. Knit in R-Studio **Comprension_Datos.Rmd** to run the understanding the data analysis.
+
+** III. Data Preparation** 
+
+1. Knit in R-Studio **Preparacion_Datos.Rmd** to run the data preparation steps. Note: A computed machine with at least 20 GB in RAM is required to generate this report. In this step we used a Data Science Virtual Machine in Azure.
+2. Knit in R-Studio **EDA.Rmd** to run the exploratory data analysis.
+
+**IV. Modelling**
+
+1. Run **Modelado.ipynb** to execute the modelling section that trains the machine learning models. This part also generates the testing set.
+
+** V. Evaluation**
+
+1. Run **Modelado.ipynb** to execute the model evaluation and fine tuning. The best model is saved in a pickle file. A file with the Kaggle predictions is generated.
+
+** VI. Deployment**
+
+1. Run **predictor.py** to execute the flask application to generate predictions by product and store. The same features used in the training and testing set have to be generated and send to the app.
