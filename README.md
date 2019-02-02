@@ -39,37 +39,37 @@ Each section has two deliverable files:
 
 ## Deliverables
 
-**Files:** 
+* **Files:** 
+	1. **Executive summary**: An executive summary of the project in spanish
+	2. **Comprension_Datos.html**: Web page that describes the dataset 
+	3. **Traduccion.html** : Web page that describes the text translation from Russian to English 
+	4. **Entendiendo_el_Negocio** : Web page that describes the business problem 
+	5. **EDA.html**: Web page that presents the exploratory data analysis
+	6. **Preparacion_Datos.html**: Web page that describes data cleaning and feature engineering.
+	7. **Modelado.ipynb**: Web page that presents the machine learning process to fit models. 
+	8. **Evaluacion.ipynb** : Web page that describes how models were evaluated, the best model selected and how predictions were performed.
 
-1. **Executive summary**: An executive summary of the project in spanish
-2. **Comprension_Datos.html**: Web page that describes the dataset 
-3. **Traduccion.html** : Web page that describes the text translation from Russian to English 
-4. **Entendiendo_el_Negocio** : Web page that describes the business problem 
-5. **EDA.html**: Web page that presents the exploratory data analysis
-6. **Preparacion_Datos.html**: Web page that describes data cleaning and feature engineering.
-7. **Modelado.ipynb**: Web page that presents the machine learning process to fit models. 
-8. **Evaluacion.ipynb** : Web page that describes how models were evaluated, the best model selected and how predictions were performed.
-Reproducible code:
-9. **README.md**: Contains information of how to make the project reproducible.
-10. **DescargaDatos.sh** : Shell script to download and extract data
-11. **Comprension_Datos.Rmd**
-12. **Traduccion.Rmd**
-13. **Entendiendo_el_Negocio.Rmd**
-14. **EDA.Rmd
-15. **Preparacion_Datos.Rmd**
-17. **01_Libraries.R**: R script with all the library packages necessary to install to run this project.
-18. **02_Utils.R**: R script with auxiliary functions written for this project.
-App
-19. **predictor.py**: web service application in flask to predict monthly sales by product and store for the month of November 2015.
+* **Reproducible code:**
+	+ **README.md**: Contains information of how to make the project reproducible.
+	+ **DescargaDatos.sh** : Shell script to download and extract data
+	+ **Comprension_Datos.Rmd**: 
+	+ **Traduccion.Rmd**
+	+ **Entendiendo_el_Negocio.Rmd**
+	+ **EDA.Rmd**
+	+ **Preparacion_Datos.Rmd**
+	+ **01_Libraries.R**: R script with all the library packages necessary to install to run this project.
+	+ **02_Utils.R**: R script with auxiliary functions written for this project.
 
-**Directories:**
+* **App**
+	+ **predictor.py**: web service application in flask to predict monthly sales by product and store for the month of November 2015. (7z files have to be decompressed to see this file.)
 
-* **Datos**: Contains raw datasets.
-* **Datos_trad**: Stores translated data in english
-* **Datos_clean**: Stores clean datasets
-* **Data_Modelos**: Stores the training and testing datasets
-* **Modelo_Final**: Stores the final model
-* **Flask**: Stores the web service application
+* **Directories:**
+	+ **Datos**: Contains raw datasets.
+	+ **Datos_trad**: Stores translated data in english
+	+ **Datos_clean**: Stores clean datasets
+	+ **Data_Modelos**: Stores the training and testing datasets
+	+ **Modelo_Final**: Stores the final model
+	+ **Flask**: Stores the web service application
 
 
 ## Instructions to reproduce data science project
