@@ -7,15 +7,15 @@
 - Alejandra Lelo 124433
 - Jose Carlos Escobar 175895
 
-## Objective:
+## Objective
 
 To predict the total monthly sales by product and store for [1C]( http://1c.ru/eng/title.html), one of the largest software companies in Russia. The purpose of this predictions is to inform business management strategy, marketing strategies and inventory management.
 
-## Data:
+## Data
 
 The dataset  belongs [“How to win a data science competition”](https://www.kaggle.com/c/competitive-data-science-predict-future-sales) Kaggle Competition for a Coursera advanced machine learning course.  
 
-## Methodology:
+## Methodology
 
 We used the [cross-industry process for data mining (CRISP-DM)](https://www.sv-europe.com/crisp-dm-methodology/) methodology. Thus the project is divided in six sections:
 
@@ -26,7 +26,7 @@ Each section has two deliverable files:
 1. **Documentation**. An HTML or Jupyter Notebook file (.ipynb) to document the process and results of each step of the CRISP-DM. *Includes documented code*.
 2. **Code**. An R-Markdown (.Rmd) or a Jupyter Notebook file (.ipynb) containing the code to reproduce each step of the project.
 
-## Tools used:
+## Tools used
 
 * **Shell scripting**: to download files from the Kaggle API
 * **R**: to preprocess, clean and explore data
